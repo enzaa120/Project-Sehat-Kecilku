@@ -115,6 +115,15 @@ if (count.count === 0) {
         "Satukan jempol dan jari manis: Bayangkan pujian yang pernah didapat.",
         "Satukan jempol dan kelingking: Bayangkan tempat yang paling indah."
       ])
+    },
+    {
+      id: "animasi",
+      title: "Video Animasi Pneumonia Balita",
+      description: "Tonton video animasi edukatif mengenai pneumonia pada balita untuk pemahaman yang lebih visual dan menarik.",
+      content_body: "Video animasi ini dirancang khusus untuk memberikan gambaran yang jelas mengenai apa itu pneumonia, bagaimana gejalanya, dan langkah-langkah pencegahannya dengan cara yang mudah dipahami.",
+      image_url: "https://lh3.googleusercontent.com/aida-public/AB6AXuCbbwKrOrY9vtVTMcnttlckg-5g2tNi-hHDUnf9Id4jdmBMTgaqRjAgwqW_Hq0YU8fhZRcIgZNnBjTz715xl_63TqHtxjT6cqxIVNVhmqGSdXKvPyNainp4y2DVbnQqNZJgCvrl8eDpRjwClcWI_2qLe9fRaEZNdqadEWGF-EjYVGarnG1iHJQ-LRfSYInF3Op-z1yCIW0_0zZmxX0S7HZdf5ZDjOhm02Xnt83781qbz9aTigzK_fFDCB9rqBxDSk_2BtKfJQMB_7Y",
+      video_url: "",
+      extra_data: ""
     }
   ];
 
@@ -122,6 +131,21 @@ if (count.count === 0) {
   for (const item of initialData) {
     insert.run(item.id, item.title, item.description, item.content_body, item.image_url, item.video_url, item.extra_data);
   }
+}
+
+// Ensure 'animasi' section exists for existing databases
+const checkAnimasi = db.prepare("SELECT id FROM content WHERE id = 'animasi'").get();
+if (!checkAnimasi) {
+  const insert = db.prepare("INSERT INTO content (id, title, description, content_body, image_url, video_url, extra_data) VALUES (?, ?, ?, ?, ?, ?, ?)");
+  insert.run(
+    "animasi",
+    "Video Animasi Pneumonia Balita",
+    "Tonton video animasi edukatif mengenai pneumonia pada balita untuk pemahaman yang lebih visual dan menarik.",
+    "Video animasi ini dirancang khusus untuk memberikan gambaran yang jelas mengenai apa itu pneumonia, bagaimana gejalanya, dan langkah-langkah pencegahannya dengan cara yang mudah dipahami.",
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuCbbwKrOrY9vtVTMcnttlckg-5g2tNi-hHDUnf9Id4jdmBMTgaqRjAgwqW_Hq0YU8fhZRcIgZNnBjTz715xl_63TqHtxjT6cqxIVNVhmqGSdXKvPyNainp4y2DVbnQqNZJgCvrl8eDpRjwClcWI_2qLe9fRaEZNdqadEWGF-EjYVGarnG1iHJQ-LRfSYInF3Op-z1yCIW0_0zZmxX0S7HZdf5ZDjOhm02Xnt83781qbz9aTigzK_fFDCB9rqBxDSk_2BtKfJQMB_7Y",
+    "",
+    ""
+  );
 }
 
 // Multer storage configuration
